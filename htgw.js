@@ -83,33 +83,18 @@ window.onclick = function(event) {
 		}
 }
 
-/*
-var data = null;
-
-var xhr = new XMLHttpRequest();
-xhr.withCredentials =false;
-
-xhr.addEventListener("readystatechange", function () {
-  if (this.readyState === 4) {
-    console.log(this.responseText);
-  }
-});
-
-xhr.open("GET", "https://everydjay-a275.restdb.io/rest/c-2-import-cal-event-sample");
-xhr.setRequestHeader("content-type", "application/json");
-xhr.setRequestHeader("x-apikey", "5b1b959146624c7b24444d69");
-xhr.setRequestHeader("cache-control", "no-cache");
-
-xhr.send(data);
-*/
-
-
 const getSuggestions = async()=>{
     
     const endpoint='https://everydjay-a275.restdb.io/rest/c-2-import-cal-event-sample';
     //const endpoint='https://api.datamuse.com/words?rel_jja=table'
     try{
-      const response=await fetch(endpoint);
+      const response=await fetch(endpoint,{
+        method:'GET',
+        headers:{
+                    'Content-type': 'application/json',
+                    'apikey': "5b1b959146624c7b24444d69"
+                }
+      });
       if(response.ok){
         const jsonResponse=await response.json();
         console.log(jsonResponse);
@@ -120,5 +105,6 @@ const getSuggestions = async()=>{
     }
     
 }
+
 getSuggestions()
 
